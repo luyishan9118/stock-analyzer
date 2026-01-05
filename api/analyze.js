@@ -1,12 +1,5 @@
-const express = require('express');
-const cors = require('cors');
 const YahooFinance = require('yahoo-finance2').default;
-
-const app = express();
 const yahooFinance = new YahooFinance({ suppressNotices: ['ripHistorical'] });
-
-app.use(cors());
-app.use(express.json());
 
 // Stock analysis functions
 function calculateRSI(prices, periods = 14) {
@@ -56,33 +49,16 @@ function calculateSMA(prices, periods) {
     return sma;
 }
 
-function calculateMACD(prices, fast = 12, slow = 26, signal = 9) {
-    const emaFast = calculateEMA(prices, fast);
-    const emaSlow = calculateEMA(prices, slow);
+function calculateMACD(prices) {
+    const ema12 = calculateEMA(prices, 12);
+    const ema26 = calculateEMA(prices, 26);
     const macd = [];
     for (let i = 0; i < prices.length; i++) {
-        if (emaFast[i] !== undefined && emaSlow[i] !== undefined) {
-            macd[i] = emaFast[i] - emaSlow[i];
+        if (ema12[i] !== undefined && ema26[i] !== undefined) {
+            macd[i] = ema12[i] - ema26[i];
         }
     }
-    const signalLine = calculateEMA(macd.filter(v => v !== undefined), signal);
-    const alignedSignal = new Array(macd.length);
-    let signalIndex = 0;
-    for (let i = 0; i < macd.length; i++) {
-        if (macd[i] !== undefined && signalIndex < signalLine.length) {
-            if (signalIndex >= signal - 1) {
-                alignedSignal[i] = signalLine[signalIndex];
-            }
-            signalIndex++;
-        }
-    }
-    const histogram = [];
-    for (let i = 0; i < macd.length; i++) {
-        if (macd[i] !== undefined && alignedSignal[i] !== undefined) {
-            histogram[i] = macd[i] - alignedSignal[i];
-        }
-    }
-    return { macd, signalLine: alignedSignal, histogram };
+    return macd;
 }
 
 function calculateBollingerBands(prices, periods = 20, stdDev = 2) {
@@ -90,257 +66,193 @@ function calculateBollingerBands(prices, periods = 20, stdDev = 2) {
     const upper = [];
     const lower = [];
     for (let i = periods - 1; i < prices.length; i++) {
-        let sum = 0;
+        let sumSquaredDiff = 0;
         for (let j = i - periods + 1; j <= i; j++) {
-            sum += Math.pow(prices[j] - sma[i], 2);
+            sumSquaredDiff += Math.pow(prices[j] - sma[i], 2);
         }
-        const std = Math.sqrt(sum / periods);
-        upper[i] = sma[i] + (std * stdDev);
-        lower[i] = sma[i] - (std * stdDev);
+        const standardDeviation = Math.sqrt(sumSquaredDiff / periods);
+        upper[i] = sma[i] + (stdDev * standardDeviation);
+        lower[i] = sma[i] - (stdDev * standardDeviation);
     }
-    return { upper, middle: sma, lower };
-}
-
-function calculateAverageVolume(volumes, periods = 20) {
-    const avgVol = [];
-    for (let i = periods - 1; i < volumes.length; i++) {
-        let sum = 0;
-        for (let j = i - periods + 1; j <= i; j++) {
-            sum += volumes[j];
-        }
-        avgVol[i] = sum / periods;
-    }
-    return avgVol;
-}
-
-function find52WeekHighLow(prices) {
-    const period = Math.min(252, prices.length);
-    const recentPrices = prices.slice(-period);
-    return {
-        high: Math.max(...recentPrices),
-        low: Math.min(...recentPrices)
-    };
+    return { upper, lower, sma };
 }
 
 function findSupportResistance(prices, volumes) {
-    const lookback = Math.min(60, prices.length);
-    const recentPrices = prices.slice(-lookback);
-    const recentVolumes = volumes.slice(-lookback);
-    const levels = [];
-
-    for (let i = 2; i < recentPrices.length - 2; i++) {
-        const price = recentPrices[i];
-        const volume = recentVolumes[i];
-        const avgVol = recentVolumes.reduce((a, b) => a + b, 0) / recentVolumes.length;
-
-        if (price > recentPrices[i-1] && price > recentPrices[i-2] &&
-            price > recentPrices[i+1] && price > recentPrices[i+2] &&
-            volume > avgVol * 0.8) {
-            levels.push({ price, type: 'resistance' });
-        }
-
-        if (price < recentPrices[i-1] && price < recentPrices[i-2] &&
-            price < recentPrices[i+1] && price < recentPrices[i+2] &&
-            volume > avgVol * 0.8) {
-            levels.push({ price, type: 'support' });
-        }
-    }
-
-    const grouped = [];
-    levels.forEach(level => {
-        const existing = grouped.find(g =>
-            Math.abs(g.price - level.price) / level.price < 0.02 &&
-            g.type === level.type
-        );
-        if (existing) {
-            existing.count = (existing.count || 1) + 1;
-            existing.price = (existing.price + level.price) / 2;
-        } else {
-            grouped.push({ ...level, count: 1 });
-        }
-    });
-
-    grouped.sort((a, b) => b.count - a.count);
+    const priceVolume = prices.map((price, i) => ({ price, volume: volumes[i] || 0 }));
+    priceVolume.sort((a, b) => b.volume - a.volume);
+    const topVolumeLevels = priceVolume.slice(0, Math.min(10, priceVolume.length));
+    topVolumeLevels.sort((a, b) => a.price - b.price);
+    const currentPrice = prices[prices.length - 1];
+    const support = topVolumeLevels.filter(level => level.price < currentPrice);
+    const resistance = topVolumeLevels.filter(level => level.price > currentPrice);
     return {
-        support: grouped.filter(l => l.type === 'support').slice(0, 2),
-        resistance: grouped.filter(l => l.type === 'resistance').slice(0, 2)
+        support: support.length > 0 ? support[support.length - 1].price : null,
+        resistance: resistance.length > 0 ? resistance[0].price : null
     };
 }
 
-// API endpoint to analyze stock
-app.post('/api/analyze', async (req, res) => {
+async function analyzeStock(ticker) {
+    const endDate = new Date();
+    const startDate = new Date();
+    startDate.setMonth(startDate.getMonth() - 6);
+
+    const result = await yahooFinance.historical(ticker, {
+        period1: startDate.toISOString().split('T')[0],
+        period2: endDate.toISOString().split('T')[0],
+        interval: '1d'
+    });
+
+    if (!result || result.length === 0) {
+        throw new Error(`No data found for ${ticker}`);
+    }
+
+    const prices = result.map(item => item.close);
+    const volumes = result.map(item => item.volume);
+    const currentPrice = prices[prices.length - 1];
+
+    const rsi = calculateRSI(prices);
+    const macd = calculateMACD(prices);
+    const sma20 = calculateSMA(prices, 20);
+    const sma50 = calculateSMA(prices, 50);
+    const sma200 = calculateSMA(prices, 200);
+    const bb = calculateBollingerBands(prices);
+
+    const currentRSI = rsi[rsi.length - 1];
+    const currentMACD = macd[macd.length - 1];
+    const currentSMA20 = sma20[sma20.length - 1];
+    const currentSMA50 = sma50[sma50.length - 1];
+    const currentSMA200 = sma200[sma200.length - 1];
+    const currentBBUpper = bb.upper[bb.upper.length - 1];
+    const currentBBLower = bb.lower[bb.lower.length - 1];
+
+    const bbPosition = ((currentPrice - currentBBLower) / (currentBBUpper - currentBBLower)) * 100;
+
+    const currentVolume = volumes[volumes.length - 1];
+    const avgVolume20 = volumes.slice(-20).reduce((a, b) => a + b, 0) / 20;
+    const volumeRatio = (currentVolume / avgVolume20).toFixed(2);
+
+    const week52High = Math.max(...prices.slice(-252));
+    const week52Low = Math.min(...prices.slice(-252));
+    const distanceFromHigh = (((week52High - currentPrice) / week52High) * 100).toFixed(2);
+    const distanceFromLow = (((currentPrice - week52Low) / week52Low) * 100).toFixed(2);
+
+    const supportResistance = findSupportResistance(prices, volumes);
+
+    let score = 0;
+    let signals = [];
+
+    if (currentRSI < 30) {
+        score += 25;
+        signals.push('RSI Oversold');
+    } else if (currentRSI > 70) {
+        score -= 15;
+        signals.push('RSI Overbought');
+    }
+
+    if (currentMACD > 0) {
+        score += 20;
+        signals.push('Positive MACD');
+    }
+
+    if (currentPrice > currentSMA20 && currentPrice > currentSMA50) {
+        score += 20;
+        signals.push('Above Short-term MAs');
+    }
+
+    if (currentSMA20 > currentSMA50 && currentSMA50 > currentSMA200) {
+        score += 15;
+        signals.push('Long-term Uptrend');
+    }
+
+    if (volumeRatio > 1.2) {
+        score += 10;
+        signals.push('High Volume');
+    }
+
+    if (bbPosition < 20) {
+        score += 15;
+        signals.push('Near Lower BB');
+    } else if (bbPosition > 80) {
+        score -= 10;
+    }
+
+    if (supportResistance.support && currentPrice <= supportResistance.support * 1.02) {
+        score += 10;
+        signals.push('Near Support');
+    }
+
+    if (distanceFromLow > 5 && distanceFromHigh > 30) {
+        score += 10;
+        signals.push('Recovery Potential');
+    }
+
+    let recommendation;
+    if (score >= 75) {
+        recommendation = 'STRONG BUY';
+    } else if (score >= 50) {
+        recommendation = 'MODERATE BUY';
+    } else if (score >= 25) {
+        recommendation = 'HOLD';
+    } else {
+        recommendation = 'AVOID';
+    }
+
+    return {
+        ticker,
+        currentPrice: currentPrice.toFixed(2),
+        score,
+        recommendation,
+        signals: signals.join(', ') || 'None',
+        rsi: currentRSI ? currentRSI.toFixed(2) : '-',
+        macd: currentMACD ? currentMACD.toFixed(2) : '-',
+        sma20: currentSMA20 ? currentSMA20.toFixed(2) : '-',
+        sma50: currentSMA50 ? currentSMA50.toFixed(2) : '-',
+        sma200: currentSMA200 ? currentSMA200.toFixed(2) : '-',
+        bbUpper: currentBBUpper ? currentBBUpper.toFixed(2) : '-',
+        bbLower: currentBBLower ? currentBBLower.toFixed(2) : '-',
+        bbPosition: bbPosition ? bbPosition.toFixed(0) : '-',
+        volume: currentVolume ? currentVolume.toLocaleString() : '-',
+        avgVolume: avgVolume20 ? Math.round(avgVolume20).toLocaleString() : '-',
+        volumeRatio,
+        week52High: week52High.toFixed(2),
+        week52Low: week52Low.toFixed(2),
+        distanceFromHigh,
+        distanceFromLow,
+        support: supportResistance.support ? supportResistance.support.toFixed(2) : 'None',
+        resistance: supportResistance.resistance ? supportResistance.resistance.toFixed(2) : 'None'
+    };
+}
+
+// Vercel serverless function handler
+module.exports = async (req, res) => {
+    // Enable CORS
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+    // Handle preflight
+    if (req.method === 'OPTIONS') {
+        res.status(200).end();
+        return;
+    }
+
+    if (req.method !== 'POST') {
+        return res.status(405).json({ error: 'Method not allowed' });
+    }
+
     try {
         const { tickers } = req.body;
 
         if (!tickers || !Array.isArray(tickers) || tickers.length === 0) {
-            return res.status(400).json({ error: 'Please provide at least one ticker' });
+            return res.status(400).json({ error: 'Please provide an array of stock tickers' });
         }
 
         const results = [];
 
         for (const ticker of tickers) {
             try {
-                const endDate = new Date();
-                const startDate = new Date();
-                startDate.setDate(startDate.getDate() - 365);
-
-                const result = await yahooFinance.historical(ticker, {
-                    period1: startDate,
-                    period2: endDate,
-                    interval: '1d'
-                });
-
-                if (!result || result.length === 0) {
-                    results.push({
-                        ticker,
-                        error: 'Could not fetch data'
-                    });
-                    continue;
-                }
-
-                const closes = result.map(day => day.close);
-                const volumes = result.map(day => day.volume);
-
-                const sma20 = calculateSMA(closes, 20);
-                const sma50 = calculateSMA(closes, 50);
-                const sma200 = calculateSMA(closes, 200);
-                const rsi = calculateRSI(closes, 14);
-                const { macd, signalLine } = calculateMACD(closes);
-                const bollingerBands = calculateBollingerBands(closes, 20, 2);
-                const avgVolume = calculateAverageVolume(volumes, 20);
-                const week52 = find52WeekHighLow(closes);
-                const srLevels = findSupportResistance(closes, volumes);
-
-                const latestIndex = result.length - 1;
-                const prevIndex = result.length - 2;
-                const currentPrice = result[latestIndex].close;
-                const currentVolume = result[latestIndex].volume;
-
-                const currentRSI = rsi[latestIndex];
-                const currentMACD = macd[latestIndex];
-                const currentSignal = signalLine[latestIndex];
-                const prevMACD = macd[prevIndex];
-                const prevSignal = signalLine[prevIndex];
-                const current20SMA = sma20[latestIndex];
-                const current50SMA = sma50[latestIndex];
-                const current200SMA = sma200[latestIndex];
-                const bbUpper = bollingerBands.upper[latestIndex];
-                const bbLower = bollingerBands.lower[latestIndex];
-                const bbPosition = ((currentPrice - bbLower) / (bbUpper - bbLower) * 100);
-                const volumeRatio = currentVolume / avgVolume[latestIndex];
-                const distanceFromHigh = ((week52.high - currentPrice) / week52.high * 100);
-                const distanceFromLow = ((currentPrice - week52.low) / week52.low * 100);
-
-                // Calculate buy signals
-                let buySignals = 0;
-                const totalSignals = 8;
-                const signals = [];
-
-                // RSI
-                if (currentRSI < 30) {
-                    buySignals += 1;
-                    signals.push('RSI Oversold');
-                } else if (currentRSI < 40) {
-                    buySignals += 0.5;
-                    signals.push('RSI Low');
-                }
-
-                // MACD
-                if (currentMACD > currentSignal && prevMACD <= prevSignal) {
-                    buySignals += 1;
-                    signals.push('MACD Bullish Crossover');
-                } else if (currentMACD > currentSignal) {
-                    buySignals += 0.5;
-                    signals.push('MACD Bullish');
-                }
-
-                // Moving averages
-                if (currentPrice > current20SMA && current20SMA > current50SMA) {
-                    buySignals += 1;
-                    signals.push('Strong Uptrend');
-                } else if (!(currentPrice < current20SMA && current20SMA < current50SMA)) {
-                    buySignals += 0.5;
-                }
-
-                // 200-day SMA
-                if (currentPrice > current200SMA) {
-                    buySignals += 1;
-                    signals.push('Long-term Uptrend');
-                }
-
-                // Bollinger Bands
-                if (bbPosition < 20) {
-                    buySignals += 1;
-                    signals.push('Near Lower BB');
-                } else if (bbPosition < 40) {
-                    buySignals += 0.5;
-                } else if (bbPosition <= 60) {
-                    buySignals += 0.5;
-                }
-
-                // Volume
-                if (volumeRatio > 1.2) {
-                    buySignals += 1;
-                    signals.push('High Volume');
-                } else if (volumeRatio > 0.8) {
-                    buySignals += 0.5;
-                }
-
-                // 52-week position
-                if (distanceFromHigh > 20) {
-                    buySignals += 1;
-                    signals.push('Far from High');
-                } else if (distanceFromHigh > 10) {
-                    buySignals += 0.5;
-                }
-
-                // Support/Resistance
-                const nearSupport = srLevels.support.some(s =>
-                    Math.abs(currentPrice - s.price) / currentPrice < 0.02
-                );
-                const nearResistance = srLevels.resistance.some(r =>
-                    Math.abs(currentPrice - r.price) / currentPrice < 0.02
-                );
-
-                if (nearSupport) {
-                    buySignals += 1;
-                    signals.push('Near Support');
-                } else if (!nearResistance) {
-                    buySignals += 0.5;
-                }
-
-                const score = (buySignals / totalSignals) * 100;
-                let recommendation = '';
-                if (score >= 75) recommendation = 'STRONG BUY';
-                else if (score >= 50) recommendation = 'MODERATE BUY';
-                else if (score >= 25) recommendation = 'HOLD';
-                else recommendation = 'AVOID';
-
-                results.push({
-                    ticker,
-                    currentPrice: parseFloat(currentPrice.toFixed(2)),
-                    score: parseFloat(score.toFixed(1)),
-                    recommendation,
-                    signals: signals.join(', ') || 'None',
-                    rsi: currentRSI ? parseFloat(currentRSI.toFixed(2)) : null,
-                    macd: currentMACD ? parseFloat(currentMACD.toFixed(2)) : null,
-                    sma20: current20SMA ? parseFloat(current20SMA.toFixed(2)) : null,
-                    sma50: current50SMA ? parseFloat(current50SMA.toFixed(2)) : null,
-                    sma200: current200SMA ? parseFloat(current200SMA.toFixed(2)) : null,
-                    bbUpper: bbUpper ? parseFloat(bbUpper.toFixed(2)) : null,
-                    bbLower: bbLower ? parseFloat(bbLower.toFixed(2)) : null,
-                    bbPosition: bbPosition ? parseFloat(bbPosition.toFixed(1)) : null,
-                    volume: (currentVolume / 1000000).toFixed(2) + 'M',
-                    avgVolume: (avgVolume[latestIndex] / 1000000).toFixed(2) + 'M',
-                    volumeRatio: parseFloat(volumeRatio.toFixed(2)),
-                    week52High: parseFloat(week52.high.toFixed(2)),
-                    week52Low: parseFloat(week52.low.toFixed(2)),
-                    distanceFromHigh: parseFloat(distanceFromHigh.toFixed(1)),
-                    distanceFromLow: parseFloat(distanceFromLow.toFixed(1)),
-                    support: srLevels.support.map(s => s.price.toFixed(2)).join(', ') || 'None',
-                    resistance: srLevels.resistance.map(r => r.price.toFixed(2)).join(', ') || 'None'
-                });
-
+                const analysis = await analyzeStock(ticker);
+                results.push(analysis);
             } catch (error) {
                 results.push({
                     ticker,
@@ -354,7 +266,4 @@ app.post('/api/analyze', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
-});
-
-// Export for Vercel serverless
-module.exports = app;
+};
