@@ -1,0 +1,92 @@
+{
+  "app": {
+    "title": "株式アナライザー",
+    "copyright": "株式アナライザー ©2026 - 教育目的のみ",
+    "support": "このプロジェクトをサポート"
+  },
+  "buttons": {
+    "analyze": "分析",
+    "cancel": "キャンセル",
+    "buyMeCoffee": "コーヒーをおごる ☕",
+    "giveFeedback": "フィードバック",
+    "observationLists": "監視リスト",
+    "createNewList": "新しいリスト作成",
+    "save": "保存",
+    "edit": "編集",
+    "delete": "削除"
+  },
+  "input": {
+    "placeholder": "株式コードを入力（例：TSLA, VOO, QQQ）",
+    "listName": "リスト名",
+    "listNamePlaceholder": "例：テック株",
+    "stockTickers": "株式コード",
+    "stockTickersPlaceholder": "例：AAPL, MSFT, GOOGL",
+    "separateWithCommas": "コンマで区切る"
+  },
+  "modal": {
+    "createList": "監視リスト作成",
+    "editList": "監視リスト編集",
+    "deleteTitle": "リスト削除",
+    "deleteConfirm": "この監視リストを削除してもよろしいですか？"
+  },
+  "messages": {
+    "loaded": "読み込まれました",
+    "listDeleted": "リストが削除されました",
+    "listUpdated": "リストが更新されました",
+    "listCreated": "リストが作成されました",
+    "enterListName": "リスト名を入力してください",
+    "enterTickers": "少なくとも1つの株式コードを入力してください",
+    "enterAtLeastOne": "少なくとも1つの株式コードを入力してください",
+    "defaultWatchlist": "デフォルト監視リスト"
+  },
+  "alerts": {
+    "error": "エラー",
+    "disclaimer": "免責事項",
+    "disclaimerText": "このツールは教育目的のみです。投資アドバイスではありません。必ずご自身で調査してください。"
+  },
+  "results": {
+    "currentPrice": "現在価格",
+    "buySignal": "買いシグナル",
+    "signals": "シグナル",
+    "none": "なし",
+    "technicalIndicators": "テクニカル指標",
+    "movingAverages": "移動平均線",
+    "bollingerBands": "ボリンジャーバンド",
+    "volume": "出来高",
+    "current": "現在",
+    "avg": "平均",
+    "ratio": "比率",
+    "week52Range": "52週レンジ",
+    "high": "高値",
+    "low": "安値",
+    "below": "下",
+    "above": "上",
+    "supportResistance": "サポート＆レジスタンス",
+    "support": "サポート",
+    "resistance": "レジスタンス",
+    "upper": "上限",
+    "lower": "下限"
+  },
+  "recommendations": {
+    "strongBuy": "強い買い",
+    "moderateBuy": "適度な買い",
+    "hold": "保有",
+    "avoid": "回避"
+  },
+  "tooltips": {
+    "rsi": "相対力指数：モメンタムを測定。<30 = 売られすぎ（買いの可能性）、>70 = 買われすぎ（売りの可能性）",
+    "macd": "移動平均収束拡散：トレンド変化とモメンタムを示す。プラス = 強気、マイナス = 弱気",
+    "bbPosition": "ボリンジャーバンド位置：ボラティリティ範囲内の価格位置を示す。<20% = 下限バンド付近（売られすぎ）、>80% = 上限バンド付近（買われすぎ）",
+    "volumeRatio": "現在の出来高と20日平均の比率。>1.2倍 = 高活動（強い関心）、<0.8倍 = 低活動（弱い確信）",
+    "support": "さらなる下落を防ぐのに十分な買い関心がある価格レベル。価格がサポートに近づくときの良いエントリーポイント",
+    "resistance": "さらなる上昇を防ぐのに十分な売り圧力がある価格レベル。これらのレベルを突破するのが難しい場合がある",
+    "stockInput": "世界の主要取引所の株式をサポート：\n• 米国：TSLA, AAPL, GOOGL\n• 香港：0700.HK, 9988.HK\n• 日本：7203.T, 6758.T\n• 英国：BP.L, HSBA.L\n• ドイツ：VOW3.DE, DAI.DE\n• カナダ：SHOP.TO, TD.TO\nコンマで複数の銘柄コードを区切る"
+  },
+  "venmo": {
+    "scanQR": "VenmoでQRコードをスキャン"
+  },
+  "email": {
+    "subject": "株式アナライザーフィードバック",
+    "body": "こんにちは、株式アナライザーアプリについてのフィードバックがあります："
+  }
+}

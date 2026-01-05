@@ -1,0 +1,92 @@
+{
+  "app": {
+    "title": "股票分析器",
+    "copyright": "股票分析器 ©2026 - 僅供教育目的",
+    "support": "支持本專案"
+  },
+  "buttons": {
+    "analyze": "分析",
+    "cancel": "取消",
+    "buyMeCoffee": "請我喝咖啡 ☕",
+    "giveFeedback": "回饋意見",
+    "observationLists": "觀察清單",
+    "createNewList": "建立新清單",
+    "save": "儲存",
+    "edit": "編輯",
+    "delete": "刪除"
+  },
+  "input": {
+    "placeholder": "輸入股票代碼（例如：TSLA, VOO, QQQ）",
+    "listName": "清單名稱",
+    "listNamePlaceholder": "例如：科技股",
+    "stockTickers": "股票代碼",
+    "stockTickersPlaceholder": "例如：AAPL, MSFT, GOOGL",
+    "separateWithCommas": "用逗號分隔代碼"
+  },
+  "modal": {
+    "createList": "建立觀察清單",
+    "editList": "編輯觀察清單",
+    "deleteTitle": "刪除清單",
+    "deleteConfirm": "確定要刪除此觀察清單嗎？"
+  },
+  "messages": {
+    "loaded": "已載入",
+    "listDeleted": "清單已刪除",
+    "listUpdated": "清單已更新",
+    "listCreated": "清單已建立",
+    "enterListName": "請輸入清單名稱",
+    "enterTickers": "請輸入至少一個股票代碼",
+    "enterAtLeastOne": "請輸入至少一個股票代碼",
+    "defaultWatchlist": "預設觀察清單"
+  },
+  "alerts": {
+    "error": "錯誤",
+    "disclaimer": "免責聲明",
+    "disclaimerText": "本工具僅供教育目的使用，不構成投資建議。請務必自行研究。"
+  },
+  "results": {
+    "currentPrice": "當前價格",
+    "buySignal": "買入訊號",
+    "signals": "訊號",
+    "none": "無",
+    "technicalIndicators": "技術指標",
+    "movingAverages": "移動平均線",
+    "bollingerBands": "布林通道",
+    "volume": "成交量",
+    "current": "當前",
+    "avg": "平均",
+    "ratio": "比率",
+    "week52Range": "52週範圍",
+    "high": "高點",
+    "low": "低點",
+    "below": "低於",
+    "above": "高於",
+    "supportResistance": "支撐與阻力",
+    "support": "支撐",
+    "resistance": "阻力",
+    "upper": "上軌",
+    "lower": "下軌"
+  },
+  "recommendations": {
+    "strongBuy": "強烈買進",
+    "moderateBuy": "適度買進",
+    "hold": "持有",
+    "avoid": "規避"
+  },
+  "tooltips": {
+    "rsi": "相對強弱指數：衡量動量。<30 = 超賣（潛在買進），>70 = 超買（潛在賣出）",
+    "macd": "移動平均收斂發散指標：顯示趨勢變化和動量。正值 = 看漲，負值 = 看跌",
+    "bbPosition": "布林通道位置：顯示價格在波動範圍內的位置。<20% = 接近下軌（超賣），>80% = 接近上軌（超買）",
+    "volumeRatio": "當前成交量與20日平均值的比率。>1.2倍 = 高活躍度（強烈興趣），<0.8倍 = 低活躍度（信心不足）",
+    "support": "買入興趣足以防止進一步下跌的價格水平。當價格接近支撐位時是良好的入場點",
+    "resistance": "賣出壓力足以防止進一步上漲的價格水平。可能難以突破這些水平",
+    "stockInput": "支援全球主要交易所的股票：\n• 美國：TSLA, AAPL, GOOGL\n• 香港：0700.HK, 9988.HK\n• 日本：7203.T, 6758.T\n• 英國：BP.L, HSBA.L\n• 德國：VOW3.DE, DAI.DE\n• 加拿大：SHOP.TO, TD.TO\n用逗號分隔多個股票代碼"
+  },
+  "venmo": {
+    "scanQR": "使用 Venmo 掃描 QR 碼"
+  },
+  "email": {
+    "subject": "股票分析器回饋",
+    "body": "您好，我對股票分析器應用程式有一些回饋："
+  }
+}

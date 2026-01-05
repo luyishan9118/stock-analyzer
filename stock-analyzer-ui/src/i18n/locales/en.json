@@ -1,0 +1,92 @@
+{
+  "app": {
+    "title": "Stock Analyzer",
+    "copyright": "Stock Analyzer ©2026 - Educational purposes only",
+    "support": "Support this project"
+  },
+  "buttons": {
+    "analyze": "Analyze",
+    "cancel": "Cancel",
+    "buyMeCoffee": "Buy Me a Coffee ☕",
+    "giveFeedback": "Give Feedback",
+    "observationLists": "Observation Lists",
+    "createNewList": "Create New List",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "input": {
+    "placeholder": "Enter stock tickers (e.g., TSLA, VOO, QQQ)",
+    "listName": "List Name",
+    "listNamePlaceholder": "e.g., Tech Stocks",
+    "stockTickers": "Stock Tickers",
+    "stockTickersPlaceholder": "e.g., AAPL, MSFT, GOOGL",
+    "separateWithCommas": "Separate tickers with commas"
+  },
+  "modal": {
+    "createList": "Create Observation List",
+    "editList": "Edit Observation List",
+    "deleteTitle": "Delete List",
+    "deleteConfirm": "Are you sure you want to delete this observation list?"
+  },
+  "messages": {
+    "loaded": "Loaded",
+    "listDeleted": "List deleted",
+    "listUpdated": "List updated",
+    "listCreated": "List created",
+    "enterListName": "Please enter a list name",
+    "enterTickers": "Please enter at least one stock ticker",
+    "enterAtLeastOne": "Please enter at least one stock ticker",
+    "defaultWatchlist": "Default Watchlist"
+  },
+  "alerts": {
+    "error": "Error",
+    "disclaimer": "Disclaimer",
+    "disclaimerText": "This is for educational purposes only. Not financial advice. Always do your own research."
+  },
+  "results": {
+    "currentPrice": "Current Price",
+    "buySignal": "Buy Signal",
+    "signals": "Signals",
+    "none": "None",
+    "technicalIndicators": "Technical Indicators",
+    "movingAverages": "Moving Averages",
+    "bollingerBands": "Bollinger Bands",
+    "volume": "Volume",
+    "current": "Current",
+    "avg": "Avg",
+    "ratio": "Ratio",
+    "week52Range": "52-Week Range",
+    "high": "High",
+    "low": "Low",
+    "below": "below",
+    "above": "above",
+    "supportResistance": "Support & Resistance",
+    "support": "Support",
+    "resistance": "Resistance",
+    "upper": "Upper",
+    "lower": "Lower"
+  },
+  "recommendations": {
+    "strongBuy": "STRONG BUY",
+    "moderateBuy": "MODERATE BUY",
+    "hold": "HOLD",
+    "avoid": "AVOID"
+  },
+  "tooltips": {
+    "rsi": "Relative Strength Index: Measures momentum. <30 = oversold (potential buy), >70 = overbought (potential sell)",
+    "macd": "Moving Average Convergence Divergence: Shows trend changes and momentum. Positive = bullish, negative = bearish",
+    "bbPosition": "Bollinger Bands Position: Shows where price is in the volatility range. <20% = near lower band (oversold), >80% = near upper band (overbought)",
+    "volumeRatio": "Current volume vs 20-day average. >1.2x = high activity (strong interest), <0.8x = low activity (weak conviction)",
+    "support": "Price levels where buying interest is strong enough to prevent further decline. Good entry points when price approaches support",
+    "resistance": "Price levels where selling pressure is strong enough to prevent further rise. May face difficulty breaking through these levels",
+    "stockInput": "Supports global stocks from all major exchanges:\n• US: TSLA, AAPL, GOOGL\n• Hong Kong: 0700.HK, 9988.HK\n• Japan: 7203.T, 6758.T\n• UK: BP.L, HSBA.L\n• Germany: VOW3.DE, DAI.DE\n• Canada: SHOP.TO, TD.TO\nSeparate multiple tickers with commas"
+  },
+  "venmo": {
+    "scanQR": "Scan QR Code with Venmo"
+  },
+  "email": {
+    "subject": "Stock Analyzer Feedback",
+    "body": "Hi, I have some feedback about the Stock Analyzer app:"
+  }
+}

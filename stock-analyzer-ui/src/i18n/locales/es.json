@@ -1,0 +1,92 @@
+{
+  "app": {
+    "title": "Analizador de Acciones",
+    "copyright": "Analizador de Acciones ©2026 - Solo con fines educativos",
+    "support": "Apoyar este proyecto"
+  },
+  "buttons": {
+    "analyze": "Analizar",
+    "cancel": "Cancelar",
+    "buyMeCoffee": "Invítame un café ☕",
+    "giveFeedback": "Dar retroalimentación",
+    "observationLists": "Listas de observación",
+    "createNewList": "Crear nueva lista",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar"
+  },
+  "input": {
+    "placeholder": "Ingrese símbolos de acciones (ej: TSLA, VOO, QQQ)",
+    "listName": "Nombre de la lista",
+    "listNamePlaceholder": "ej: Acciones tecnológicas",
+    "stockTickers": "Símbolos de acciones",
+    "stockTickersPlaceholder": "ej: AAPL, MSFT, GOOGL",
+    "separateWithCommas": "Separe los símbolos con comas"
+  },
+  "modal": {
+    "createList": "Crear lista de observación",
+    "editList": "Editar lista de observación",
+    "deleteTitle": "Eliminar lista",
+    "deleteConfirm": "¿Está seguro de que desea eliminar esta lista de observación?"
+  },
+  "messages": {
+    "loaded": "Cargado",
+    "listDeleted": "Lista eliminada",
+    "listUpdated": "Lista actualizada",
+    "listCreated": "Lista creada",
+    "enterListName": "Por favor ingrese un nombre de lista",
+    "enterTickers": "Por favor ingrese al menos un símbolo de acción",
+    "enterAtLeastOne": "Por favor ingrese al menos un símbolo de acción",
+    "defaultWatchlist": "Lista de observación predeterminada"
+  },
+  "alerts": {
+    "error": "Error",
+    "disclaimer": "Descargo de responsabilidad",
+    "disclaimerText": "Esto es solo con fines educativos. No es asesoramiento financiero. Siempre haga su propia investigación."
+  },
+  "results": {
+    "currentPrice": "Precio actual",
+    "buySignal": "Señal de compra",
+    "signals": "Señales",
+    "none": "Ninguna",
+    "technicalIndicators": "Indicadores técnicos",
+    "movingAverages": "Medias móviles",
+    "bollingerBands": "Bandas de Bollinger",
+    "volume": "Volumen",
+    "current": "Actual",
+    "avg": "Prom",
+    "ratio": "Ratio",
+    "week52Range": "Rango de 52 semanas",
+    "high": "Alto",
+    "low": "Bajo",
+    "below": "por debajo",
+    "above": "por encima",
+    "supportResistance": "Soporte y Resistencia",
+    "support": "Soporte",
+    "resistance": "Resistencia",
+    "upper": "Superior",
+    "lower": "Inferior"
+  },
+  "recommendations": {
+    "strongBuy": "COMPRA FUERTE",
+    "moderateBuy": "COMPRA MODERADA",
+    "hold": "MANTENER",
+    "avoid": "EVITAR"
+  },
+  "tooltips": {
+    "rsi": "Índice de fuerza relativa: Mide el impulso. <30 = sobrevendido (compra potencial), >70 = sobrecomprado (venta potencial)",
+    "macd": "Convergencia/divergencia de medias móviles: Muestra cambios de tendencia e impulso. Positivo = alcista, negativo = bajista",
+    "bbPosition": "Posición de bandas de Bollinger: Muestra dónde está el precio en el rango de volatilidad. <20% = cerca de la banda inferior (sobrevendido), >80% = cerca de la banda superior (sobrecomprado)",
+    "volumeRatio": "Volumen actual vs promedio de 20 días. >1.2x = alta actividad (fuerte interés), <0.8x = baja actividad (débil convicción)",
+    "support": "Niveles de precio donde el interés de compra es lo suficientemente fuerte para evitar una mayor caída. Buenos puntos de entrada cuando el precio se acerca al soporte",
+    "resistance": "Niveles de precio donde la presión de venta es lo suficientemente fuerte para evitar una mayor subida. Puede tener dificultades para superar estos niveles",
+    "stockInput": "Admite acciones de las principales bolsas mundiales:\n• EE. UU.: TSLA, AAPL, GOOGL\n• Hong Kong: 0700.HK, 9988.HK\n• Japón: 7203.T, 6758.T\n• Reino Unido: BP.L, HSBA.L\n• Alemania: VOW3.DE, DAI.DE\n• Canadá: SHOP.TO, TD.TO\nSepare varios símbolos con comas"
+  },
+  "venmo": {
+    "scanQR": "Escanee el código QR con Venmo"
+  },
+  "email": {
+    "subject": "Retroalimentación del Analizador de Acciones",
+    "body": "Hola, tengo algunos comentarios sobre la aplicación Analizador de Acciones:"
+  }
+}

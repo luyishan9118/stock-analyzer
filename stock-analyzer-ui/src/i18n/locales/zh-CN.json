@@ -1,0 +1,92 @@
+{
+  "app": {
+    "title": "股票分析器",
+    "copyright": "股票分析器 ©2026 - 仅供教育目的",
+    "support": "支持本项目"
+  },
+  "buttons": {
+    "analyze": "分析",
+    "cancel": "取消",
+    "buyMeCoffee": "请我喝咖啡 ☕",
+    "giveFeedback": "反馈建议",
+    "observationLists": "观察列表",
+    "createNewList": "创建新列表",
+    "save": "保存",
+    "edit": "编辑",
+    "delete": "删除"
+  },
+  "input": {
+    "placeholder": "输入股票代码（例如：TSLA, VOO, QQQ）",
+    "listName": "列表名称",
+    "listNamePlaceholder": "例如：科技股",
+    "stockTickers": "股票代码",
+    "stockTickersPlaceholder": "例如：AAPL, MSFT, GOOGL",
+    "separateWithCommas": "用逗号分隔代码"
+  },
+  "modal": {
+    "createList": "创建观察列表",
+    "editList": "编辑观察列表",
+    "deleteTitle": "删除列表",
+    "deleteConfirm": "确定要删除此观察列表吗？"
+  },
+  "messages": {
+    "loaded": "已加载",
+    "listDeleted": "列表已删除",
+    "listUpdated": "列表已更新",
+    "listCreated": "列表已创建",
+    "enterListName": "请输入列表名称",
+    "enterTickers": "请输入至少一个股票代码",
+    "enterAtLeastOne": "请输入至少一个股票代码",
+    "defaultWatchlist": "默认观察列表"
+  },
+  "alerts": {
+    "error": "错误",
+    "disclaimer": "免责声明",
+    "disclaimerText": "本工具仅供教育目的使用，不构成投资建议。请务必自行研究。"
+  },
+  "results": {
+    "currentPrice": "当前价格",
+    "buySignal": "买入信号",
+    "signals": "信号",
+    "none": "无",
+    "technicalIndicators": "技术指标",
+    "movingAverages": "移动平均线",
+    "bollingerBands": "布林带",
+    "volume": "成交量",
+    "current": "当前",
+    "avg": "平均",
+    "ratio": "比率",
+    "week52Range": "52周范围",
+    "high": "高点",
+    "low": "低点",
+    "below": "低于",
+    "above": "高于",
+    "supportResistance": "支撑与阻力",
+    "support": "支撑",
+    "resistance": "阻力",
+    "upper": "上轨",
+    "lower": "下轨"
+  },
+  "recommendations": {
+    "strongBuy": "强烈买入",
+    "moderateBuy": "适度买入",
+    "hold": "持有",
+    "avoid": "规避"
+  },
+  "tooltips": {
+    "rsi": "相对强弱指数：衡量动量。<30 = 超卖（潜在买入），>70 = 超买（潜在卖出）",
+    "macd": "移动平均收敛发散指标：显示趋势变化和动量。正值 = 看涨，负值 = 看跌",
+    "bbPosition": "布林带位置：显示价格在波动范围内的位置。<20% = 接近下轨（超卖），>80% = 接近上轨（超买）",
+    "volumeRatio": "当前成交量与20日平均值的比率。>1.2倍 = 高活跃度（强烈兴趣），<0.8倍 = 低活跃度（信心不足）",
+    "support": "买入兴趣足以防止进一步下跌的价格水平。当价格接近支撑位时是良好的入场点",
+    "resistance": "卖出压力足以防止进一步上涨的价格水平。可能难以突破这些水平",
+    "stockInput": "支持全球主要交易所的股票：\n• 美国：TSLA, AAPL, GOOGL\n• 香港：0700.HK, 9988.HK\n• 日本：7203.T, 6758.T\n• 英国：BP.L, HSBA.L\n• 德国：VOW3.DE, DAI.DE\n• 加拿大：SHOP.TO, TD.TO\n用逗号分隔多个股票代码"
+  },
+  "venmo": {
+    "scanQR": "使用 Venmo 扫描二维码"
+  },
+  "email": {
+    "subject": "股票分析器反馈",
+    "body": "您好，我对股票分析器应用有一些反馈："
+  }
+}

@@ -1,0 +1,85 @@
+/* Mobile-first responsive design */
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  /* Ensure cards stack vertically on mobile */
+  .ant-col {
+    max-width: 100% !important;
+  }
+
+  /* Reduce padding on mobile */
+  .ant-layout-header {
+    padding: 0 12px !important;
+    height: auto !important;
+    min-height: 64px;
+  }
+
+  .ant-layout-content {
+    padding: 0 8px !important;
+  }
+
+  /* Make buttons full width on very small screens */
+  @media (max-width: 480px) {
+    .ant-btn {
+      width: 100%;
+      margin-bottom: 8px;
+    }
+
+    .ant-space-item {
+      width: 100%;
+    }
+  }
+
+  /* Adjust footer for mobile */
+  .ant-layout-footer {
+    padding: 16px 8px !important;
+  }
+
+  /* Make QR code responsive */
+  img[alt="Venmo QR Code"] {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}

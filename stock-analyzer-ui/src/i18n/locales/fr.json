@@ -1,0 +1,92 @@
+{
+  "app": {
+    "title": "Analyseur d'Actions",
+    "copyright": "Analyseur d'Actions ©2026 - À des fins éducatives uniquement",
+    "support": "Soutenir ce projet"
+  },
+  "buttons": {
+    "analyze": "Analyser",
+    "cancel": "Annuler",
+    "buyMeCoffee": "M'offrir un café ☕",
+    "giveFeedback": "Donner un avis",
+    "observationLists": "Listes d'observation",
+    "createNewList": "Créer une nouvelle liste",
+    "save": "Enregistrer",
+    "edit": "Modifier",
+    "delete": "Supprimer"
+  },
+  "input": {
+    "placeholder": "Entrez les symboles d'actions (ex: TSLA, VOO, QQQ)",
+    "listName": "Nom de la liste",
+    "listNamePlaceholder": "ex: Actions Tech",
+    "stockTickers": "Symboles d'actions",
+    "stockTickersPlaceholder": "ex: AAPL, MSFT, GOOGL",
+    "separateWithCommas": "Séparez les symboles par des virgules"
+  },
+  "modal": {
+    "createList": "Créer une liste d'observation",
+    "editList": "Modifier la liste d'observation",
+    "deleteTitle": "Supprimer la liste",
+    "deleteConfirm": "Êtes-vous sûr de vouloir supprimer cette liste d'observation ?"
+  },
+  "messages": {
+    "loaded": "Chargé",
+    "listDeleted": "Liste supprimée",
+    "listUpdated": "Liste mise à jour",
+    "listCreated": "Liste créée",
+    "enterListName": "Veuillez entrer un nom de liste",
+    "enterTickers": "Veuillez entrer au moins un symbole d'action",
+    "enterAtLeastOne": "Veuillez entrer au moins un symbole d'action",
+    "defaultWatchlist": "Liste d'observation par défaut"
+  },
+  "alerts": {
+    "error": "Erreur",
+    "disclaimer": "Avertissement",
+    "disclaimerText": "Ceci est à des fins éducatives uniquement. Ce n'est pas un conseil financier. Faites toujours vos propres recherches."
+  },
+  "results": {
+    "currentPrice": "Prix actuel",
+    "buySignal": "Signal d'achat",
+    "signals": "Signaux",
+    "none": "Aucun",
+    "technicalIndicators": "Indicateurs techniques",
+    "movingAverages": "Moyennes mobiles",
+    "bollingerBands": "Bandes de Bollinger",
+    "volume": "Volume",
+    "current": "Actuel",
+    "avg": "Moy",
+    "ratio": "Ratio",
+    "week52Range": "Fourchette 52 semaines",
+    "high": "Haut",
+    "low": "Bas",
+    "below": "en dessous",
+    "above": "au-dessus",
+    "supportResistance": "Support et Résistance",
+    "support": "Support",
+    "resistance": "Résistance",
+    "upper": "Supérieur",
+    "lower": "Inférieur"
+  },
+  "recommendations": {
+    "strongBuy": "ACHAT FORT",
+    "moderateBuy": "ACHAT MODÉRÉ",
+    "hold": "CONSERVER",
+    "avoid": "ÉVITER"
+  },
+  "tooltips": {
+    "rsi": "Indice de force relative : Mesure l'élan. <30 = survendu (achat potentiel), >70 = suracheté (vente potentielle)",
+    "macd": "Convergence/divergence de moyennes mobiles : Montre les changements de tendance et l'élan. Positif = haussier, négatif = baissier",
+    "bbPosition": "Position des bandes de Bollinger : Montre où se situe le prix dans la plage de volatilité. <20% = près de la bande inférieure (survendu), >80% = près de la bande supérieure (suracheté)",
+    "volumeRatio": "Volume actuel vs moyenne sur 20 jours. >1,2x = forte activité (fort intérêt), <0,8x = faible activité (faible conviction)",
+    "support": "Niveaux de prix où l'intérêt d'achat est suffisamment fort pour empêcher une nouvelle baisse. Bons points d'entrée lorsque le prix s'approche du support",
+    "resistance": "Niveaux de prix où la pression de vente est suffisamment forte pour empêcher une nouvelle hausse. Peut avoir du mal à franchir ces niveaux",
+    "stockInput": "Prend en charge les actions des principales bourses mondiales :\n• États-Unis : TSLA, AAPL, GOOGL\n• Hong Kong : 0700.HK, 9988.HK\n• Japon : 7203.T, 6758.T\n• Royaume-Uni : BP.L, HSBA.L\n• Allemagne : VOW3.DE, DAI.DE\n• Canada : SHOP.TO, TD.TO\nSéparez plusieurs symboles par des virgules"
+  },
+  "venmo": {
+    "scanQR": "Scannez le code QR avec Venmo"
+  },
+  "email": {
+    "subject": "Retour sur l'Analyseur d'Actions",
+    "body": "Bonjour, j'ai des commentaires sur l'application Analyseur d'Actions :"
+  }
+}

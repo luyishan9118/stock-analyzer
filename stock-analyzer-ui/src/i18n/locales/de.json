@@ -1,0 +1,92 @@
+{
+  "app": {
+    "title": "Aktienanalyse-Tool",
+    "copyright": "Aktienanalyse-Tool ©2026 - Nur zu Bildungszwecken",
+    "support": "Dieses Projekt unterstützen"
+  },
+  "buttons": {
+    "analyze": "Analysieren",
+    "cancel": "Abbrechen",
+    "buyMeCoffee": "Einen Kaffee ausgeben ☕",
+    "giveFeedback": "Feedback geben",
+    "observationLists": "Beobachtungslisten",
+    "createNewList": "Neue Liste erstellen",
+    "save": "Speichern",
+    "edit": "Bearbeiten",
+    "delete": "Löschen"
+  },
+  "input": {
+    "placeholder": "Aktiensymbole eingeben (z.B. TSLA, VOO, QQQ)",
+    "listName": "Listenname",
+    "listNamePlaceholder": "z.B. Tech-Aktien",
+    "stockTickers": "Aktiensymbole",
+    "stockTickersPlaceholder": "z.B. AAPL, MSFT, GOOGL",
+    "separateWithCommas": "Symbole durch Kommas trennen"
+  },
+  "modal": {
+    "createList": "Beobachtungsliste erstellen",
+    "editList": "Beobachtungsliste bearbeiten",
+    "deleteTitle": "Liste löschen",
+    "deleteConfirm": "Sind Sie sicher, dass Sie diese Beobachtungsliste löschen möchten?"
+  },
+  "messages": {
+    "loaded": "Geladen",
+    "listDeleted": "Liste gelöscht",
+    "listUpdated": "Liste aktualisiert",
+    "listCreated": "Liste erstellt",
+    "enterListName": "Bitte geben Sie einen Listennamen ein",
+    "enterTickers": "Bitte geben Sie mindestens ein Aktiensymbol ein",
+    "enterAtLeastOne": "Bitte geben Sie mindestens ein Aktiensymbol ein",
+    "defaultWatchlist": "Standard-Beobachtungsliste"
+  },
+  "alerts": {
+    "error": "Fehler",
+    "disclaimer": "Haftungsausschluss",
+    "disclaimerText": "Dies dient nur zu Bildungszwecken. Keine Finanzberatung. Führen Sie immer Ihre eigenen Recherchen durch."
+  },
+  "results": {
+    "currentPrice": "Aktueller Preis",
+    "buySignal": "Kaufsignal",
+    "signals": "Signale",
+    "none": "Keine",
+    "technicalIndicators": "Technische Indikatoren",
+    "movingAverages": "Gleitende Durchschnitte",
+    "bollingerBands": "Bollinger-Bänder",
+    "volume": "Volumen",
+    "current": "Aktuell",
+    "avg": "Durchschn.",
+    "ratio": "Verhältnis",
+    "week52Range": "52-Wochen-Bereich",
+    "high": "Hoch",
+    "low": "Tief",
+    "below": "unter",
+    "above": "über",
+    "supportResistance": "Unterstützung & Widerstand",
+    "support": "Unterstützung",
+    "resistance": "Widerstand",
+    "upper": "Obere",
+    "lower": "Untere"
+  },
+  "recommendations": {
+    "strongBuy": "STARKER KAUF",
+    "moderateBuy": "MODERATER KAUF",
+    "hold": "HALTEN",
+    "avoid": "VERMEIDEN"
+  },
+  "tooltips": {
+    "rsi": "Relative-Stärke-Index: Misst die Dynamik. <30 = überverkauft (potenzieller Kauf), >70 = überkauft (potenzieller Verkauf)",
+    "macd": "Gleitender Durchschnitt Konvergenz/Divergenz: Zeigt Trendänderungen und Dynamik. Positiv = bullisch, negativ = bärisch",
+    "bbPosition": "Bollinger-Bänder-Position: Zeigt, wo der Preis im Volatilitätsbereich liegt. <20% = nahe unterem Band (überverkauft), >80% = nahe oberem Band (überkauft)",
+    "volumeRatio": "Aktuelles Volumen vs. 20-Tage-Durchschnitt. >1,2x = hohe Aktivität (starkes Interesse), <0,8x = niedrige Aktivität (schwache Überzeugung)",
+    "support": "Preisniveaus, bei denen das Kaufinteresse stark genug ist, um einen weiteren Rückgang zu verhindern. Gute Einstiegspunkte, wenn sich der Preis der Unterstützung nähert",
+    "resistance": "Preisniveaus, bei denen der Verkaufsdruck stark genug ist, um einen weiteren Anstieg zu verhindern. Kann Schwierigkeiten haben, diese Niveaus zu durchbrechen",
+    "stockInput": "Unterstützt Aktien von den wichtigsten weltweiten Börsen:\n• USA: TSLA, AAPL, GOOGL\n• Hongkong: 0700.HK, 9988.HK\n• Japan: 7203.T, 6758.T\n• Großbritannien: BP.L, HSBA.L\n• Deutschland: VOW3.DE, DAI.DE\n• Kanada: SHOP.TO, TD.TO\nMehrere Symbole durch Kommas trennen"
+  },
+  "venmo": {
+    "scanQR": "QR-Code mit Venmo scannen"
+  },
+  "email": {
+    "subject": "Aktienanalyse-Tool Feedback",
+    "body": "Hallo, ich habe Feedback zur Aktienanalyse-Tool-App:"
+  }
+}
